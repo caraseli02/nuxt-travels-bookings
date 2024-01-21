@@ -1,6 +1,6 @@
 <template>
   <div class="container mx-auto p-4">
-    <section class="flex justify-between items-center">
+    <section class="flex justify-between items-center mb-16">
       <h1 class="text-2xl font-bold mb-4">Travel Management</h1>
       <UButton
         icon="i-heroicons-plus-20-solid"
