@@ -19,13 +19,13 @@ Steps to Follow
 
 ### 3\. Develop Core Features
 
--   [ ]  Develop reusable components like buttons, inputs, tables, etc.
--   [ ]  Implement the travels list with filters and CRUD operations.
--   [ ]  Implement the bookings list with CRUD operations and a multi-step booking form.
+-   [x]  Develop reusable components like buttons, inputs, tables, etc.
+-   [x]  Implement the travels list with filters and CRUD operations.
+-   [x]  Implement the bookings list with CRUD operations and a multi-step booking form.
 
 ### 4\. Implement Mock Backend
 
--   [ ]  Create mock API endpoints for travels and bookings.
+-   [x]  Create mock API endpoints for travels and bookings.
 -   [ ]  Connect Pinia with the mock API for state management.
 
 ### 5\. Enhance User Experience
@@ -36,7 +36,7 @@ Steps to Follow
 
 ### 6\. Testing
 
--   [ ]  Write unit tests for components and Vuex store.
+-   [ ]  Write unit tests for components and Pinia store.
 -   [ ]  Implement end-to-end tests to simulate user interactions.
 
 ### 7\. Optimization and Best Practices
