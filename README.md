@@ -1,5 +1,8 @@
 Travels and Bookings Management System
 ======================================
+
+[Project website](https://nuxt-travels-bookings.vercel.app/bookings)
+
 ## Figma reference link: 
 https://www.figma.com/file/xLQ5VPZdeKghPNfl0h77JE/Travel%26Booking?type=design&node-id=0%3A1&mode=dev
 
