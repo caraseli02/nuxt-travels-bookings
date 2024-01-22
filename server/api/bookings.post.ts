@@ -2,7 +2,7 @@
 import { defineEventHandler } from "h3";
 import { addBooking } from "../bookingsData";
 
-export default defineEventHandler((event) => {
-  const newBooking = readBody(event);
+export default defineEventHandler(async (event) => {
+  const newBooking = await readBody(event);
   return addBooking(newBooking);
 });

@@ -2,8 +2,8 @@
 import { defineEventHandler } from "h3";
 import { updateBooking } from "../../bookingsData";
 
-export default defineEventHandler((event) => {
-  const updatedBooking = readBody(event);
+export default defineEventHandler(async (event) => {
+  const updatedBooking = await readBody(event);
   const bookingId = parseInt(event.context.params.id);
 
   const result = updateBooking(bookingId, updatedBooking);

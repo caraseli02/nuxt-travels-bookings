@@ -4,6 +4,6 @@ import { addTravel } from "../travelsData";
 
 export default defineEventHandler(async (event) => {
   const newTravel = await readBody(event);
-  
+
   return addTravel(newTravel);
 });

@@ -16,11 +16,11 @@
             :key="travel.id"
             class="min-w-[250px] border hover:border-primary hover:dark:border-primary rounded-lg shadow cursor-pointer"
             :class="
-              form.travelId === travel.id
+              Number(form.travelId) === travel.id
                 ? 'border-primary dark:border-primary'
                 : 'border-gray-200 dark:border-gray-700'
             "
-            @click="form.travelId = travel.id"
+            @click="onTravelClick(String(travel.id))"
           >
             <img
               :src="travel.image"
@@ -68,7 +68,7 @@
       <section v-if="currentStep === 3" class="flex flex-col gap-4 mb-4">
         <section class="flex gap-4">
           <button
-            v-for="item in options"
+            v-for="item in paymentOptions"
             :key="item.label"
             :class="
               item.value === form.paymentType
@@ -112,7 +112,6 @@
 
 <script setup lang="ts">
 import type { Booking } from "../types"; // Import the Booking TypeScript interface
-import type { UIcon } from "#build/components";
 
 const props = defineProps<{
   booking?: Booking;
@@ -120,9 +119,15 @@ const props = defineProps<{
 
 const currentStep = ref(1);
 
-const form = reactive<SimplifiedBooking>({
+const form = reactive({
   travelId: "",
-  customerInfo: { name: "", email: "", phoneNumber: "", age: 0, gender: "" },
+  customerInfo: {
+    name: "test edit",
+    email: "test@example.com",
+    phoneNumber: "6655874125",
+    age: 20,
+    gender: "Male",
+  },
   paymentType: "",
   notes: "",
 });
@@ -131,7 +136,11 @@ const updateStep = (step: number) => {
   currentStep.value = step;
 };
 
-const emit = defineEmits(["save", "cancel"]);
+const emit = defineEmits<{
+  submit: [travel: typeof form];
+  cancel: [val: boolean];
+  refresh: [val: boolean];
+}>();
 
 const submit = async () => {
   // Form submission logic here
@@ -142,7 +151,7 @@ const submit = async () => {
   }
 };
 
-const saveBooking = async () => {
+const saveBooking = () => {
   try {
     // Construct the booking data object
     const bookingData = {
@@ -152,28 +161,11 @@ const saveBooking = async () => {
       notes: form.notes,
     };
 
-    // Send a POST request to the server to save the booking
-    const response = await fetch("/api/bookings", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(bookingData),
-    });
-
-    if (!response.ok) {
-      throw new Error(`Error: ${response.statusText}`);
-    }
-
-    const result = await response.json();
-    console.log("Booking saved:", result);
-
     // Emit an event to notify the parent component that the booking has been saved
-    emit("save", result);
+    emit("submit", bookingData);
 
     // Reset the form and close the modal
     resetForm();
-    modelValue.value = false;
   } catch (error) {
     console.error("Failed to save booking:", error);
     // Handle the error (e.g., show an error message to the user)
@@ -195,7 +187,7 @@ const resetForm = () => {
 };
 
 const cancel = () => {
-  emit("cancel");
+  emit("cancel", true);
 };
 
 const modelValue = defineModel<boolean>();
@@ -210,7 +202,7 @@ const {
   return $fetch("/api/travels");
 });
 
-const options = [
+const paymentOptions = [
   {
     value: "transfer",
     label: "Credit transfer",
@@ -232,12 +224,15 @@ const isFormDataValid = computed(() => {
   if (currentStep.value === 3) return validatePaymentInfo(form.paymentType);
   return true; // Placeholder, replace with actual validation
 });
-</script>
 
-<style>
-.booking-radio-group fieldset {
-  display: flex !important;
-  gap: 1.5rem;
-}
-/* Add Tailwind CSS styling here */
-</style>
+const onTravelClick = (travelId: string) => {
+  form.travelId = travelId;
+  updateStep(currentStep.value + 1);
+};
+
+onMounted(() => {
+  if (props.booking?.id) {
+    Object.assign(form, { ...props.booking });
+  }
+});
+</script>

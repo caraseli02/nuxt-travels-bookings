@@ -39,7 +39,7 @@
 import type { Booking, SimplifiedBooking } from "../types"; // Import the Booking TypeScript interface
 import { useAsyncData } from "#imports";
 
-const showForm = ref(true);
+const showForm = ref(false);
 const currentBooking = ref<Booking | null>(null);
 
 const editBooking = (booking: Booking) => {
@@ -48,7 +48,19 @@ const editBooking = (booking: Booking) => {
 };
 
 const deleteBooking = async (bookingId: string | number) => {
-  // Handle booking deletion logic here
+  try {
+    const response = await fetch(`/api/bookings/${bookingId}`, {
+      method: "DELETE",
+    });
+
+    if (!response.ok) {
+      throw new Error(`Error: ${response.statusText}`);
+    }
+
+    refreshBookings();
+  } catch (error) {
+    console.error("Failed to delete booking:", error);
+  }
 };
 
 const cancelEdit = () => {
@@ -67,7 +79,19 @@ const {
 });
 
 function onSubmit(booking: SimplifiedBooking) {
-  // Handle booking form submission here
+  const method = currentBooking.value ? "PUT" : "POST";
+  const url = currentBooking.value
+    ? `/api/bookings/${currentBooking.value?.id}`
+    : "/api/bookings";
+  useFetch(url, { method, body: booking })
+    .then(() => {
+      // Emit save event after successful POST/PUT request
+      currentBooking.value = null;
+      makeRefresh();
+    })
+    .catch((error) => {
+      console.error("Error saving Booking:", error);
+    });
 }
 
 const makeRefresh = () => {
