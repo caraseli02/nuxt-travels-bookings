@@ -66,7 +66,7 @@ const defaultState = {
     departure: "",
     return: "",
   },
-  price: "1600",
+  price: 1600,
   description: "test lorem ipsun ament haden",
 };
 const state = reactive(defaultState);

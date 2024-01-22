@@ -111,7 +111,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Booking } from "../types"; // Import the Booking TypeScript interface
+import type { Booking, SimplifiedBooking } from "../types"; // Import the Booking TypeScript interface
 
 const props = defineProps<{
   booking?: Booking;
@@ -119,7 +119,7 @@ const props = defineProps<{
 
 const currentStep = ref(1);
 
-const form = reactive({
+const form = reactive<SimplifiedBooking>({
   travelId: "",
   customerInfo: {
     name: "test edit",
@@ -128,7 +128,7 @@ const form = reactive({
     age: 20,
     gender: "Male",
   },
-  paymentType: "",
+  paymentType: "Revolut",
   notes: "",
 });
 

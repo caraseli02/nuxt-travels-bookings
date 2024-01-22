@@ -27,7 +27,7 @@
     <BookingWizard
       v-if="showForm"
       v-model="showForm"
-      :booking="currentBooking as Booking"
+      :booking="(currentBooking as Booking)"
       @refresh="makeRefresh"
       @cancel="cancelEdit"
       @submit="onSubmit"
@@ -83,7 +83,7 @@ function onSubmit(booking: SimplifiedBooking) {
   const url = currentBooking.value
     ? `/api/bookings/${currentBooking.value?.id}`
     : "/api/bookings";
-  useFetch(url, { method, body: booking })
+  useFetch(url, { method, body: { id: currentBooking.value?.id, ...booking } })
     .then(() => {
       // Emit save event after successful POST/PUT request
       currentBooking.value = null;

@@ -10,16 +10,9 @@ export interface Travel {
   price: number;
   averageRating: number;
 }
-export type SimplifiedTravel = {
-  image: string;
-  name: string;
-  dates: {
-    departure: string;
-    return: string;
-  };
-  price: string;
-  description: string;
-};
+
+// Use Omit to exclude 'id' and 'averageRating' from Travel
+export type SimplifiedTravel = Omit<Travel, "id" | "averageRating">;
 
 export interface CustomerInfo {
   name: string;
@@ -37,15 +30,5 @@ export interface Booking {
   notes?: string; // Optional field
 }
 
-export type SimplifiedBooking = {
-  travelId: string;
-  customerInfo: {
-    name: string;
-    email: string;
-    phoneNumber: string;
-    age: number;
-    gender: string;
-  };
-  paymentType: string;
-  notes: string;
-};
+// Use Omit to exclude 'id' from Booking
+export type SimplifiedBooking = Omit<Booking, "id">;
