@@ -1,5 +1,6 @@
+Technical Case: Vladislav caraseli02@gmail.com
+======================================
 Travels and Bookings Management System
-Technical Case Vladislav caraseli02@gmail.com
 ======================================
 
 [Project website](https://nuxt-travels-bookings.vercel.app/bookings)
