@@ -193,12 +193,7 @@ const cancel = () => {
 const modelValue = defineModel<boolean>();
 
 // Fetch travels from Nuxt server
-const {
-  data: travels,
-  pending: loadingTravels,
-  error: errorTravels,
-  refresh: refreshTravels,
-} = useAsyncData(() => {
+const { data: travels } = useAsyncData(() => {
   return $fetch("/api/travels");
 });
 

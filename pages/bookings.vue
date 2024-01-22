@@ -18,7 +18,7 @@
       </button>
     </div>
     <BookingList
-      v-else
+      v-if="!loadingBookings"
       :loading="loadingBookings"
       :bookings="bookings as Booking[]"
       @edit="editBooking"
@@ -27,7 +27,7 @@
     <BookingWizard
       v-if="showForm"
       v-model="showForm"
-      :booking="currentBooking"
+      :booking="currentBooking as Booking"
       @refresh="makeRefresh"
       @cancel="cancelEdit"
       @submit="onSubmit"

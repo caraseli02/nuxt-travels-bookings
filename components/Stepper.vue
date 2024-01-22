@@ -1,6 +1,6 @@
 <template>
   <div class="flex">
-    <UButton label="Prev" @click="prevStep" />
+    <UButton :disabled="currentStep === 1" label="Prev" @click="prevStep" />
     <ol
       class="items-center justify-center w-full space-y-4 sm:flex sm:space-x-8 sm:space-y-0 rtl:space-x-reverse"
     >
@@ -19,7 +19,7 @@
         </span>
       </li>
     </ol>
-    <UButton label="Next" @click="nextStep" />
+    <UButton :disabled="currentStep === 3" label="Next" @click="nextStep" />
   </div>
 </template>
 

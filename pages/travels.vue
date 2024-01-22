@@ -20,7 +20,7 @@
       </button>
     </div>
     <TravelList
-      v-else
+      v-else-if="!loadingTravels"
       :loading="loadingTravels"
       :travels="travels as Travel[]"
       @edit="editTravel"
