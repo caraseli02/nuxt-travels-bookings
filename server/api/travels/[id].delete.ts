@@ -3,6 +3,7 @@ import { defineEventHandler } from "h3";
 import { deleteTravel } from "../../travelsData";
 
 export default defineEventHandler((event) => {
+  if (!event.context.params) return { message: "Travel not found" };
   const travelId = parseInt(event.context.params.id);
 
   const result = deleteTravel(travelId);

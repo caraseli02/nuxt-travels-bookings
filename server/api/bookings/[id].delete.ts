@@ -3,6 +3,7 @@ import { defineEventHandler } from "h3";
 import { deleteBooking } from "../../bookingsData";
 
 export default defineEventHandler((event) => {
+  if (!event.context.params) return { message: "Booking not found" };
   const bookingId = parseInt(event.context.params.id);
 
   const result = deleteBooking(bookingId);

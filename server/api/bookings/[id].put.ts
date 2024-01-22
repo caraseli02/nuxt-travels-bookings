@@ -4,6 +4,7 @@ import { updateBooking } from "../../bookingsData";
 
 export default defineEventHandler(async (event) => {
   const updatedBooking = await readBody(event);
+  if (!event.context.params) return { message: "Booking not found" };
   const bookingId = parseInt(event.context.params.id);
 
   const result = updateBooking(bookingId, updatedBooking);

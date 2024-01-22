@@ -4,6 +4,7 @@ import { updateTravel } from "../../travelsData";
 
 export default defineEventHandler(async (event) => {
   const updatedTravel = await readBody(event);
+  if (!event.context.params) return { message: "Travel not found" };
   const travelId = parseInt(event.context.params.id);
 
   const result = updateTravel(travelId, updatedTravel);
