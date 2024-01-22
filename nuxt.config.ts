@@ -2,4 +2,8 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ["@nuxt/ui"],
+  test: {
+    include: ['test/**/*.test.ts'],
+    environment: 'jsdom',
+  },
 });
