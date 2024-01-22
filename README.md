@@ -1,5 +1,7 @@
 Travels and Bookings Management System
 ======================================
+## Figma reference link: 
+https://www.figma.com/file/xLQ5VPZdeKghPNfl0h77JE/Travel%26Booking?type=design&node-id=0%3A1&mode=dev
 
 Steps to Follow
 ---------------
