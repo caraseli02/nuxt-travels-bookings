@@ -30,14 +30,15 @@ Steps to Follow
 
 ### 5\. Enhance User Experience
 
--   [ ]  Implement client-side validation for forms.
+-   [ ]  Implement better client-side validation for forms.
 -   [ ]  Ensure the application is responsive.
 -   [ ]  Implement notifications or alerts for user actions.
 
 ### 6\. Testing
 
--   [ ]  Write unit tests for components and Pinia store.
--   [ ]  Implement end-to-end tests to simulate user interactions.
+-   [x]  Write unit tests for components.
+-   [ ]  Write unit tests for Pinia store.
+-   [x]  Implement end-to-end tests to simulate user interactions.
 
 ### 7\. Optimization and Best Practices
 
