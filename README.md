@@ -1,9 +1,10 @@
 Travels and Bookings Management System
+Technical Case Vladislav caraseli02@gmail.com
 ======================================
 
 [Project website](https://nuxt-travels-bookings.vercel.app/bookings)
 
-## Figma reference link: 
+## Figma reference link for step 2 of Design and Planning: 
 https://www.figma.com/file/xLQ5VPZdeKghPNfl0h77JE/Travel%26Booking?type=design&node-id=0%3A1&mode=dev
 
 Steps to Follow
